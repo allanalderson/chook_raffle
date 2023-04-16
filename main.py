@@ -134,19 +134,20 @@ def update_display():
     ''' Draws  displayed_digit with a grey surface then removes leading zeros. '''
     global winner_peek
     screen.fill(BLACK)
+
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-    if spin_stopped == True:
-        #  Remove leading zeros from winner digits
+  #  if spin_stopped == True:
+
+    if digit_position[3].resolved:
         if winner_peek < 1000:
             screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+    if digit_position[2].resolved:
         if winner_peek < 100:
             screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+    if digit_position[1].resolved:
         if winner_peek < 10:
             screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
-
-
-
 
 
 
