@@ -35,8 +35,8 @@ for i in range(10):
 rect_width = surface_grey[0].get_width()
 rect_height = surface_grey[0].get_height()
 rect_surface = pygame.Surface((rect_width, rect_height))
-rect_surface.fill((0, 0, 100))  # Fill with blue color
-rect_surface.set_alpha(128)
+rect_surface.fill((0, 0, 0))  # Fill with blue color
+# rect_surface.set_alpha(128)
 
 class Screendigit:
     def __init__(self, x_pos, y_pos, winning_digit, suspence_digit, displayed_digit, resolved, reveal_timer):
@@ -133,20 +133,36 @@ def update_logic():
 def update_display():
     ''' Draws  displayed_digit with a grey surface then removes leading zeros. '''
     global winner_peek
+    global suspence_ticket
     screen.fill(BLACK)
 
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
+    # Erase the leading zeros of the revealed winner
+    if spin_stopped:
+        if digit_position[3].resolved:
+            if winner_peek < 1000:
+                screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+        if digit_position[2].resolved:
+            if winner_peek < 100:
+                screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+        if digit_position[1].resolved:
+            if winner_peek < 10:
+                screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+    else:
 
-    if digit_position[3].resolved:
-        if winner_peek < 1000:
-            screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
-    if digit_position[2].resolved:
-        if winner_peek < 100:
-            screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
-    if digit_position[1].resolved:
-        if winner_peek < 10:
-            screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+            if suspence_ticket < 1000:
+                if digit_position[3].suspence_digit == 0:
+                    screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+
+            if suspence_ticket < 100:
+                if digit_position[2].suspence_digit == 0:
+                    screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+
+            if suspence_ticket < 10:
+                if digit_position[1].suspence_digit == 0:
+                    screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+
 
 
 
