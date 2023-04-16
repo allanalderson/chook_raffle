@@ -138,32 +138,31 @@ def update_display():
 
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-    # Erase the leading zeros of the revealed winner
-    if spin_stopped:
-        if digit_position[3].resolved:
-            if winner_peek < 1000:
-                screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
-        if digit_position[2].resolved:
-            if winner_peek < 100:
-                screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
-        if digit_position[1].resolved:
-            if winner_peek < 10:
-                screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
-    else:
+    # Erase the leading zeros of display
 
+        if digit_position[3].resolved == False:
             if suspence_ticket < 1000:
                 if digit_position[3].suspence_digit == 0:
                     screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
-
+        if digit_position[2].resolved == False:
             if suspence_ticket < 100:
                 if digit_position[2].suspence_digit == 0:
                     screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
-
+        if digit_position[1].resolved == False:
             if suspence_ticket < 10:
                 if digit_position[1].suspence_digit == 0:
                     screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
-
+        if spin_stopped:
+            if digit_position[3].resolved:
+                if winner_peek < 1000:
+                    screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+            if digit_position[2].resolved:
+                if winner_peek < 100:
+                    screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+            if digit_position[1].resolved:
+                if winner_peek < 10:
+                    screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
 
 
