@@ -35,7 +35,7 @@ for i in range(10):
 rect_width = surface_grey[0].get_width()
 rect_height = surface_grey[0].get_height()
 rect_surface = pygame.Surface((rect_width, rect_height))
-rect_surface.fill((0, 0, 0))  # Fill with blue color
+rect_surface.fill((0, 0, 100))  # Fill with blue color
 rect_surface.set_alpha(128)
 
 class Screendigit:
@@ -137,7 +137,6 @@ def update_display():
 
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-  #  if spin_stopped == True:
 
     if digit_position[3].resolved:
         if winner_peek < 1000:
