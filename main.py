@@ -4,7 +4,7 @@ import time
 import pygame
 from pygame.locals import *
 pygame.init()
-pygame.display.set_caption("Lucky Video Draw V2 ")
+pygame.display.set_caption("Chook Raffle Video Display")
 RANGE_MIN = 1
 RANGE_MAX = 1000
 FPS = 15
@@ -35,7 +35,7 @@ for i in range(10):
 rect_width = surface_grey[0].get_width()
 rect_height = surface_grey[0].get_height()
 rect_surface = pygame.Surface((rect_width, rect_height))
-rect_surface.fill((0, 0, 0))  # Fill with blue color
+rect_surface.fill((0, 0, 128))  # Fill with blue color
 rect_surface.set_alpha(128)
 
 class Screendigit:
@@ -134,11 +134,10 @@ def update_display():
     screen.fill(BLACK)
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-    #tidy_digits()
-    pygame.display.flip()
 
 
-def tidy_digits():
+
+def remove_leading_zeros():
     global spin_stopped
     global winner_peek
 
@@ -183,4 +182,6 @@ while True:
     draw_suspence_ticket()
     update_logic()
     update_display()
+    remove_leading_zeros()
+    pygame.display.flip()
     FramePerSec.tick(FPS)
