@@ -153,16 +153,15 @@ def update_display():
                 if digit_position[1].suspence_digit == 0:
                     screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
-        if spin_stopped:
-            if digit_position[3].resolved:
-                if winner_peek < 1000:
-                    screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
-            if digit_position[2].resolved:
-                if winner_peek < 100:
-                    screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
-            if digit_position[1].resolved:
-                if winner_peek < 10:
-                    screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+        if digit_position[3].resolved:
+            if winner_peek < 1000:
+                screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+        if digit_position[2].resolved:
+            if winner_peek < 100:
+                screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+        if digit_position[1].resolved:
+            if winner_peek < 10:
+                screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
 
 
