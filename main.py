@@ -6,7 +6,7 @@ from pygame.locals import *
 pygame.init()
 pygame.display.set_caption("Chook Raffle Video Display")
 RANGE_MIN = 1
-RANGE_MAX = 1000
+RANGE_MAX = 1111
 FPS = 15
 FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
@@ -35,7 +35,7 @@ for i in range(10):
 rect_width = surface_grey[0].get_width()
 rect_height = surface_grey[0].get_height()
 rect_surface = pygame.Surface((rect_width, rect_height))
-rect_surface.fill((0, 0, 128))  # Fill with blue color
+rect_surface.fill((0, 0, 0))  # Fill with blue color
 rect_surface.set_alpha(128)
 
 class Screendigit:
@@ -94,6 +94,7 @@ def draw_suspence_ticket():
 
 
 
+
 def start_reveal_timers():
     digit_position[3].reveal_timer = int(time.time() + 0)  # 0
     digit_position[2].reveal_timer = int(time.time() + 1)  # 1
@@ -130,23 +131,22 @@ def update_logic():
 
 
 def update_display():
+    ''' Draws  displayed_digit with a grey surface then removes leading zeros. '''
     global winner_peek
     screen.fill(BLACK)
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
+    if spin_stopped == True:
+        #  Remove leading zeros from winner digits
+        if winner_peek < 1000:
+            screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
+        if winner_peek < 100:
+            screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
+        if winner_peek < 10:
+            screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
 
 
-def remove_leading_zeros():
-    global spin_stopped
-    global winner_peek
-
-    if winner_peek < 1000:
-        screen.blit(rect_surface, (digit_position[3].x_pos, digit_position[3].y_pos))
-    if winner_peek < 100:
-        screen.blit(rect_surface, (digit_position[2].x_pos, digit_position[2].y_pos))
-    if winner_peek < 10:
-        screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
 
 
 
@@ -182,6 +182,5 @@ while True:
     draw_suspence_ticket()
     update_logic()
     update_display()
-    remove_leading_zeros()
     pygame.display.flip()
     FramePerSec.tick(FPS)
