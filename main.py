@@ -12,28 +12,29 @@ FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-GOLD = (250, 190, 90)
-GREY = (170, 180, 190)
+COLOR_WINNER = (250, 190, 90)
+COLOR_SUSPENSE = (170, 180, 190)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-winner_peek = 0
-winner_known = True
-spin_stopped = False
+
 my_font = pygame.font.SysFont('Arial', 700)  # 490
 # Create an empty list to store surfaces ready to be blited:
-surface_gold = []
+surface_suspense_color = []
+
+surface_winner_color = []
 for i in range(10):
-    surface_gold.append(my_font.render(str(i), True, GOLD))
-surface_grey = []
+    surface_winner_color.append(my_font.render(str(i), True, COLOR_WINNER))
 for i in range(10):
-    surface_grey.append(my_font.render(str(i), True, GREY))
+    surface_suspense_color.append(my_font.render(str(i), True, COLOR_SUSPENSE))
 
 
-rect_width = surface_grey[0].get_width()
-rect_height = surface_grey[0].get_height()
+rect_width = surface_suspense_color[0].get_width()
+rect_height = surface_suspense_color[0].get_height()
 rect_surface = pygame.Surface((rect_width, rect_height))
 rect_surface.fill(BACKGROUND_COLOR)
 # rect_surface.set_alpha(128)
-
+winner_peek = 0
+winner_known = True
+spin_stopped = False
 class Screendigit:
     def __init__(self, x_pos, y_pos, winning_digit, suspense_digit, displayed_digit, resolved, reveal_timer):
         self.x_pos = x_pos
@@ -103,9 +104,9 @@ def update_logic():
     global spin_stopped
     global winner_peek
     if spin_stopped == False:
-        for i in range(4):
-            if digit_position[i].resolved == False:
-                digit_position[i].displayed_digit =  digit_position[i].suspense_digit # random.randint(0, 9)
+        # for i in range(4):
+        #     if digit_position[i].resolved == False:
+        #         digit_position[i].displayed_digit =  digit_position[i].suspense_digit # random.randint(0, 9)
         if all([digit_position[0].resolved, digit_position[1].resolved, digit_position[2].resolved,
                 digit_position[3].resolved]):
             spin_stopped = True
@@ -130,11 +131,11 @@ def update_display():
     global spin_stopped
     screen.fill(BACKGROUND_COLOR)
     for i in range(4):
-        screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-    # if spin_stopped:
-    #     for i in range(4):
-    #         screen.blit(surface_gold[digit_position[i].displayed_digit],
-    #                     (digit_position[i].x_pos, digit_position[i].y_pos))
+        screen.blit(surface_suspense_color[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
+
+        for i in range(4):
+            screen.blit(surface_winner_color[digit_position[i].displayed_digit],
+                        (digit_position[i].x_pos, digit_position[i].y_pos))
     # Erase the leading zeros of the suspense_ticket blit with a rectangle
         if digit_position[3].resolved == False:
             if suspense_ticket < 1000:
@@ -151,7 +152,7 @@ def update_display():
         # Turn the winner Gold
         if spin_stopped:
             for i in range(4):
-                screen.blit(surface_gold[digit_position[i].displayed_digit],
+                screen.blit(surface_winner_color[digit_position[i].displayed_digit],
                             (digit_position[i].x_pos, digit_position[i].y_pos))
         # Erase the leading zeros of the winners blit with a rectangle
         if digit_position[3].resolved:
