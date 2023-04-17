@@ -12,19 +12,20 @@ FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-COLOR_WINNER = (250, 190, 90)
-COLOR_SUSPENSE = (170, 180, 190)
+COLOR_SUSPENSE = (250, 190, 90)
+COLOR_RESOLVED = (250, 250, 220)
+COLOR_WINNER = (250, 250, 150)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 my_font = pygame.font.SysFont('Arial', 700)  # 490
 # Create an empty list to store surfaces ready to be blited:
 surface_suspense_color = []
-
+surface_resolved_color = []
 surface_winner_color = []
 for i in range(10):
-    surface_winner_color.append(my_font.render(str(i), True, COLOR_WINNER))
-for i in range(10):
     surface_suspense_color.append(my_font.render(str(i), True, COLOR_SUSPENSE))
+    surface_resolved_color.append(my_font.render(str(i), True, COLOR_RESOLVED))
+    surface_winner_color.append(my_font.render(str(i), True, COLOR_WINNER))
 
 
 rect_width = surface_suspense_color[0].get_width()
@@ -132,10 +133,10 @@ def update_display():
     screen.fill(BACKGROUND_COLOR)
     for i in range(4):
         screen.blit(surface_suspense_color[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-
-        for i in range(4):
-            screen.blit(surface_winner_color[digit_position[i].displayed_digit],
-                        (digit_position[i].x_pos, digit_position[i].y_pos))
+        #
+        # for i in range(4):
+        #     screen.blit(surface_winner_color[digit_position[i].displayed_digit],
+        #                 (digit_position[i].x_pos, digit_position[i].y_pos))
     # Erase the leading zeros of the suspense_ticket blit with a rectangle
         if digit_position[3].resolved == False:
             if suspense_ticket < 1000:
