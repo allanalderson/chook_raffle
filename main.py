@@ -7,12 +7,12 @@ pygame.init()
 pygame.display.set_caption("Chook Raffle Video Display")
 RANGE_MIN = 1
 RANGE_MAX = 1100
-FPS = 20
+FPS = 15
 FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-GOLD = (250, 190, 80)
+GOLD = (250, 190, 60)
 GREY = (180, 180, 190)
 WHITE = (250, 250, 255)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -128,9 +128,14 @@ def update_display():
     ''' Draws  displayed_digit with a grey surface then removes leading zeros. '''
     global winner_peek
     global suspense_ticket
+    global spin_stopped
     screen.fill(BACKGROUND_COLOR)
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
+    # if spin_stopped:
+    #     for i in range(4):
+    #         screen.blit(surface_gold[digit_position[i].displayed_digit],
+    #                     (digit_position[i].x_pos, digit_position[i].y_pos))
     # Erase the leading zeros of the suspense_ticket blit with a rectangle
         if digit_position[3].resolved == False:
             if suspense_ticket < 1000:
@@ -144,6 +149,11 @@ def update_display():
             if suspense_ticket < 10:
                 if digit_position[1].suspense_digit == 0:
                     screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+        # Turn the winner Gold
+        if spin_stopped:
+            for i in range(4):
+                screen.blit(surface_gold[digit_position[i].displayed_digit],
+                            (digit_position[i].x_pos, digit_position[i].y_pos))
         # Erase the leading zeros of the winners blit with a rectangle
         if digit_position[3].resolved:
             if winner_peek < 1000:
@@ -154,6 +164,7 @@ def update_display():
         if digit_position[1].resolved:
             if winner_peek < 10:
                 screen.blit(rect_surface, (digit_position[1].x_pos, digit_position[1].y_pos))
+
 
 
 def spin():
