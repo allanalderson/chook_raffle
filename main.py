@@ -4,7 +4,7 @@ import time
 import pygame
 from pygame.locals import *
 pygame.init()
-pygame.display.set_caption("Chook Raffle Video Display")
+pygame.display.set_caption("Chook Raffle Video Display V1.0")
 RANGE_MIN = 1
 RANGE_MAX = 999
 FPS = 15
@@ -12,7 +12,7 @@ FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-GOLD = (250, 190, 90)
+GOLD = (250, 200, 90)
 GREY = (170, 180, 190)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 winner_peek = 0
@@ -21,10 +21,9 @@ spin_stopped = False
 my_font = pygame.font.SysFont('Arial', 700)  # 490
 # Create an empty list to store surfaces ready to be blited:
 surface_gold = []
-for i in range(10):
-    surface_gold.append(my_font.render(str(i), True, GOLD))
 surface_grey = []
 for i in range(10):
+    surface_gold.append(my_font.render(str(i), True, GOLD))
     surface_grey.append(my_font.render(str(i), True, GREY))
 
 
