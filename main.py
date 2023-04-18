@@ -61,7 +61,8 @@ for i in range(4):
 
 def draw_winning_ticket():
     global winner_peek
-    """  Gets the winning ticket. Also splits this winning number into relevant positions (units, tens, hundreds, thousands) """
+    """  Gets the winning ticket. Also splits this winning number into
+     relevant positions (units, tens, hundreds, thousands) """
     global winner_known
     if winner_known == False:
         winning_ticket = random.randint (RANGE_MIN, RANGE_MAX)
@@ -90,7 +91,7 @@ def draw_suspense_ticket():
 def start_reveal_timers():
     digit_position[3].reveal_timer = int(time.time() + -1)  # 0
     digit_position[2].reveal_timer = int(time.time() + 1)  # 1
-    digit_position[1].reveal_timer = int(time.time() + 4)  # 4
+    digit_position[1].reveal_timer = int(time.time() + 3)  # 4
     digit_position[0].reveal_timer = int(time.time() + 7)  # 8
 
 
