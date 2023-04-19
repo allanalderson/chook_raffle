@@ -6,8 +6,8 @@ from pygame.locals import *
 pygame.init()
 pygame.display.set_caption("  Chook Raffle Video Display V1.0  ")
 RANGE_MIN = 1
-RANGE_MAX = 999
-FPS = 15
+RANGE_MAX = 199
+FPS = 12
 FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -112,7 +112,8 @@ def update_logic():
             print("STOPPED AT", winner_peek)
             print()
             update_display()
-            time.sleep(1)
+            pygame.display.flip()
+            time.sleep(2)
             pygame.event.get()  # removes key strokes from buffer
     if winner_known == True:
         for i in range(4):
@@ -131,11 +132,6 @@ def update_display():
     screen.fill(BACKGROUND_COLOR)
     for i in range(4):
         screen.blit(surface_grey[digit_position[i].displayed_digit], (digit_position[i].x_pos, digit_position[i].y_pos))
-    # if spin_stopped:
-    #     for i in range(4):
-    #         screen.blit(surface_gold[digit_position[i].displayed_digit],
-    #                     (digit_position[i].x_pos, digit_position[i].y_pos))
-    # Erase the leading zeros of the suspense_ticket blit with a rectangle
         if digit_position[3].resolved == False:
             if suspense_ticket < 1000:
                 if digit_position[3].suspense_digit == 0:
