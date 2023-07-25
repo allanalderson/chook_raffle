@@ -4,16 +4,16 @@ import time
 import pygame
 from pygame.locals import *
 pygame.init()
-pygame.display.set_caption("  Chook Raffle Video Display V1.0  ")
+pygame.display.set_caption("  Chook_Raffle   ")
 RANGE_MIN = 1
 RANGE_MAX = 199
-FPS = 8
+FPS = 7
 FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-GOLD = (250, 200, 90)
-GREY = (170, 180, 190)
+GOLD = (250, 220, 80)
+GREY = (180, 180, 190)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 winner_peek = 0
 winner_known = True
