@@ -12,7 +12,7 @@ FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
-GOLD = (250, 200, 90)
+winning_color = (60, 200, 60)
 GREY = (170, 180, 190)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 winner_peek = 0
@@ -23,7 +23,7 @@ my_font = pygame.font.SysFont('Arial', 700)  # 490
 surface_gold = []
 surface_grey = []
 for i in range(10):
-	surface_gold.append(my_font.render(str(i), True, GOLD))
+	surface_gold.append(my_font.render(str(i), True, winning_color))
 	surface_grey.append(my_font.render(str(i), True, GREY))
 
 
