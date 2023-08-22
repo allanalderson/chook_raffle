@@ -6,8 +6,8 @@ from pygame.locals import *
 pygame.init()
 pygame.display.set_caption("  Chook Raffle Video Display V1.1  ")
 RANGE_MIN = 1
-RANGE_MAX = 9199
-FPS = 12
+RANGE_MAX = 92
+FPS = 8
 FramePerSec = pygame.time.Clock()
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
@@ -96,10 +96,10 @@ def draw_suspense_ticket():
 
 
 def start_reveal_timers():
-	digit_position[3].reveal_timer = int(time.time() + -1)  # 0
-	digit_position[2].reveal_timer = int(time.time() + 1)  # 1
-	digit_position[1].reveal_timer = int(time.time() + 3)  # 4
-	digit_position[0].reveal_timer = int(time.time() + 7)  # 8
+	digit_position[3].reveal_timer = int(time.time() + 0)  # 0
+	digit_position[2].reveal_timer = int(time.time() + 0)  # 1
+	digit_position[1].reveal_timer = int(time.time() + 0)  # 4
+	digit_position[0].reveal_timer = int(time.time() + 5)  # 8
 
 
 
