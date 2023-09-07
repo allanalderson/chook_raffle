@@ -5,7 +5,7 @@ import pygame
 from pygame.locals import *
 pygame.init()
 pygame.display.set_caption("  Chook Raffle Video Display V1.1  ")
-RANGE_MIN = 1
+RANGE_MIN = 20
 RANGE_MAX = 107
 FPS = 8
 FramePerSec = pygame.time.Clock()
