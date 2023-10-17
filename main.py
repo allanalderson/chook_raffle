@@ -3,13 +3,20 @@ import sys
 import time
 import pygame
 from pygame.locals import *
+print()
+print()
+print("ENSURE PYGAME WINDOW IS NOT MAXIMISED TO FULL SCREEN")
+print()
+print()
 pygame.init()
 pygame.display.set_caption("  Chook Raffle Video Display V1.1  ")
-RANGE_MIN = 20
-RANGE_MAX = 107
-FPS = 8
+RANGE_MIN = 1
+RANGE_MAX = 4607
+FPS = 10
+SPACING = 370 #360
+my_font = pygame.font.SysFont('Arial', 500)  # 500
 FramePerSec = pygame.time.Clock()
-SCREEN_WIDTH = 1920
+SCREEN_WIDTH = 2400
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOR = (0, 0, 0)
 winning_color = (60, 200, 60)
@@ -56,7 +63,7 @@ digit_position = []
 # Generate 4 positions (SingleDigits) each with arguments and add them to the list
 for i in range(4):
 	SingleDigit = Screendigit(0, 0, 0, 0, 0, 0, 0)
-	SingleDigit.x_pos = 1300 - (i * 400)
+	SingleDigit.x_pos = 1300 - (i * SPACING)
 	SingleDigit.y_pos = 200
 	SingleDigit.winning_digit = 0
 	SingleDigit.suspense_digit = 0
@@ -97,9 +104,9 @@ def draw_suspense_ticket():
 
 def start_reveal_timers():
 	digit_position[3].reveal_timer = int(time.time() + 0)  # 0
-	digit_position[2].reveal_timer = int(time.time() + 0)  # 1
-	digit_position[1].reveal_timer = int(time.time() + 0)  # 4
-	digit_position[0].reveal_timer = int(time.time() + 5)  # 8
+	digit_position[2].reveal_timer = int(time.time() + 2)  # 1
+	digit_position[1].reveal_timer = int(time.time() + 4)  # 4
+	digit_position[0].reveal_timer = int(time.time() + 6)  # 8
 
 
 
@@ -198,3 +205,4 @@ while True:
 	update_display()
 	pygame.display.flip()
 	FramePerSec.tick(FPS)
+
